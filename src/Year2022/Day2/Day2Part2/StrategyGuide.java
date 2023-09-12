@@ -33,7 +33,6 @@ PLAYER  :  X - DU MÅSTE FÖRLORA
 
             switch (b) {
                 case "X" -> {
-                    score = 0;
                     switch (a) {
                         case "A" -> points = 3;
                         case "B" -> points = 1;

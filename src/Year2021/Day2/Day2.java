@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Day2 {
 
     int depth;
-    String file = "src/Year2021/Day2/input.txt";
+    final String file = "src/Year2021/Day2/input.txt";
     Scanner scanner;
     int horizontal;
 

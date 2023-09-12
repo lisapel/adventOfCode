@@ -8,9 +8,9 @@ import java.util.Scanner;
 
 public class Day1 {
     int counter;
-    String file = "src/Year2021/Day1/input.txt";
+    final String file = "src/Year2021/Day1/input.txt";
     Scanner scanner;
-    List<Integer> arrayList = new ArrayList<>();
+    final List<Integer> arrayList = new ArrayList<>();
 
     public int part1 () throws FileNotFoundException {
         scanner = new Scanner(new File(file));

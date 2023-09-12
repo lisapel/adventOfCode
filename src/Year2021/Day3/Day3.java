@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Day3 {
 
-    String file = "src/Year2021/Day3/input.txt";
+    final String file = "src/Year2021/Day3/input.txt";
     Scanner scanner;
 
     int part1() throws FileNotFoundException {

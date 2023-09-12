@@ -31,50 +31,46 @@ PLAYER  :  X - STEN
             int sum = 0;
             int points = 0;
 
-            if (b.equals("X")) {
-                score = 1;
-                if (a.equals("A")) {
-                    points = 3;
-                } else if (a.equals("B")) {
-                    points = 0;
-                } else if (a.equals("C")) {
-                    points = 6;
+            switch (b) {
+                case "X" -> {
+                    score = 1;
+                    switch (a) {
+                        case "A" -> points = 3;
+                        case "B" -> {
+                        }
+                        case "C" -> points = 6;
+                    }
+                    sum = points + score;
+                    arrayList.add(sum);
                 }
-                sum = points + score;
-                arrayList.add(sum);
-
-            } else if (b.equals("Y")) {
-                score = 2;
-                if (a.equals("A")) {
-                    points = 6;
-                } else if (a.equals("B")) {
-                    points = 3;
-                } else if (a.equals("C")) {
-                    points = 0;
+                case "Y" -> {
+                    score = 2;
+                    points = switch (a) {
+                        case "A" -> 6;
+                        case "B" -> 3;
+                        case "C" -> 0;
+                        default -> points;
+                    };
+                    sum = points + score;
+                    arrayList.add(sum);
                 }
-                sum = points + score;
-                arrayList.add(sum);
-
-
-            } else if (b.equals("Z")) {
-                score = 3;
-                if (a.equals("A")) {
-                    points = 0;
-                } else if (a.equals("B")) {
-                    points = 6;
-                } else if (a.equals("C")) {
-                    points = 3;
+                case "Z" -> {
+                    score = 3;
+                    points = switch (a) {
+                        case "A" -> 0;
+                        case "B" -> 6;
+                        case "C" -> 3;
+                        default -> points;
+                    };
+                    sum = points + score;
+                    arrayList.add(sum);
                 }
-                sum = points + score;
-
-
-                arrayList.add(sum);
             }
 
         }
         int summan=0;
-        for (int i = 0;i<arrayList.size();i++){
-            summan=summan+arrayList.get(i);
+        for (Integer integer : arrayList) {
+            summan = summan + integer;
         }
             System.out.println(summan);
     }
