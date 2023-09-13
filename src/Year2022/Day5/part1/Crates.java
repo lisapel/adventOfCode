@@ -1,4 +1,4 @@
-package Year2022.Day5;
+package Year2022.Day5.part1;
 
 import java.io.*;
 import java.util.*;
