@@ -1,4 +1,4 @@
-package Year2022.Day1.Day1Part2;
+package year2022.day1.Day1Part2;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class ElfCalories {
     void readAndPrintOnFile(){
         String file ="src/Day2/Calories.txt";
-        Year2022.Day1.ElfCalories.readFile(file);
+        year2022.day1.ElfCalories.readFile(file);
 
     }
     int biggestValue() throws FileNotFoundException {

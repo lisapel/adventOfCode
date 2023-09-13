@@ -1,13 +1,16 @@
-package Year2022.Day3;
+package year2022.day3.Day3Part2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
 
-public class Rucksack {
+public class Part2 {
     int separateCompartments() throws FileNotFoundException {
         String letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         int total=0;
+
         Scanner scanner = new Scanner(new File("rucksack"));
         while (scanner.hasNextLine()) {
 
@@ -34,8 +37,10 @@ public class Rucksack {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        Rucksack rucksack = new Rucksack();
-        int num = rucksack.separateCompartments();
+        Part2 part2 = new Part2();
+        int num = part2.separateCompartments();
         System.out.println(num);
     }
-        }
+}
+
+

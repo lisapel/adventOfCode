@@ -1,4 +1,4 @@
-package Year2022.Day1;
+package year2022.day1;
 
 import java.io.*;
 import java.util.Scanner;
