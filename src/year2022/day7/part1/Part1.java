@@ -24,7 +24,7 @@ public class Part1 {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("src/year2022/day7/part1/part1"));
         String line;
         ArrayList<String> arrayList = new ArrayList<>();
-        Map<String, List<Integer>> directoryTree = new HashMap<>();
+        Map<String, List<String>> directoryTree = new HashMap<>();
         while ((line = bufferedReader.readLine()) != null) {
             arrayList.add(line);
 
@@ -35,13 +35,12 @@ public class Part1 {
                 directoryTree.put(substring, new ArrayList<>());
             }
         }
-        System.out.println(directoryTree);
 
         for (int i = 13; i < 956; i++) {
             if (arrayList.get(i).contains("cd")) {
                String substring = arrayList.get(i).substring(5);
                if (directoryTree.containsKey(substring)){
-                  //add values to integer-list for  key
+                  //add values to list for  key
                   // directoryTree.get(substring).add(arrayList.get(i)+2);
                    System.out.println(directoryTree);
                }
