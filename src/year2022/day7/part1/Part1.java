@@ -31,18 +31,20 @@ public class Part1 {
         }
         for (int i = 0; i < 13; i++) {
             if (arrayList.get(i).contains("dir")) {
-                directoryTree.put(arrayList.get(i), new ArrayList<>());
+                String substring = arrayList.get(i).substring(4);
+                directoryTree.put(substring, new ArrayList<>());
             }
         }
         System.out.println(directoryTree);
 
-        for (int i = 13; i < 957; i++) {
+        for (int i = 13; i < 956; i++) {
             if (arrayList.get(i).contains("cd")) {
-                directoryTree.forEach((k, v) -> {
-                    {
-
-                    }
-                });
+               String substring = arrayList.get(i).substring(5);
+               if (directoryTree.containsKey(substring)){
+                  //add values to integer-list for  key
+                  // directoryTree.get(substring).add(arrayList.get(i)+2);
+                   System.out.println(directoryTree);
+               }
             }
         }
 
