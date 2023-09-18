@@ -21,33 +21,32 @@ public class Part1 {
         }
         List<List<Integer>> transformedList = transportMatrix(integerList);
 
-        for (int i = 0; i < integerList.size(); i++) {
+        for (int i = 0; i < integerList.size(); i++) { //east
             for (int z = integerList.size() - 1; z >= 0; z--) {
                 int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 visibleCheckEastAndSouth(integerList.get(i).get(z), z, b);
             }
         }
 
-        for (int i = 0; i < integerList.size(); i++) {
+        for (int i = 0; i < integerList.size(); i++) { //west
             for (int y = 0; y < integerList.size(); y++) {
                 int a = integerList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 visibleCheckWestAndNorth(integerList.get(i).get(y), y, a);
             }
         }
-        for (int i = 0; i < transformedList.size(); i++) {
+        for (int i = 0; i < transformedList.size(); i++) { //north
             for (int y = 0; y < transformedList.size(); y++) {
                 int a = transformedList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a);
             }
         }
-        for (int i=0;i<transformedList.size();i++){
+        for (int i=0;i<transformedList.size();i++){ //south
             for (int z=transformedList.size()-1;z>=0;z--){
                 int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 System.out.println(visibleCheckEastAndSouth(integerList.get(i).get(z), z, b));
 
             }
         }
-
     }
 
 
@@ -61,6 +60,7 @@ public class Part1 {
         if (xPos == 99) {
             return true;
         } else return x >= max;
+
     }
 
     public List<List<Integer>> transportMatrix(List<List<Integer>> integerList) {
@@ -78,10 +78,8 @@ public class Part1 {
         return transposed;
     }
 
-
     public static void main(String[] args) throws IOException {
         Part1 part1 = new Part1();
         part1.solution();
     }
-
 }
