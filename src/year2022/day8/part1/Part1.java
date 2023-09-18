@@ -19,6 +19,7 @@ public class Part1 {
             }
             integerList.add(integers);
         }
+        List<List<Integer>> transformedList = transportMatrix(integerList);
 
         for (int i = 0; i < integerList.size(); i++) {
             for (int z = integerList.size() - 1; z >= 0; z--) {
@@ -33,14 +34,19 @@ public class Part1 {
                 visibleCheckWestAndNorth(integerList.get(i).get(y), y, a);
             }
         }
-        List<List<Integer>> transformedList = transportMatrix(integerList);
         for (int i = 0; i < transformedList.size(); i++) {
             for (int y = 0; y < transformedList.size(); y++) {
                 int a = transformedList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                System.out.println(visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a));
+                visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a);
             }
         }
+        for (int i=0;i<transformedList.size();i++){
+            for (int z=transformedList.size()-1;z>=0;z--){
+                int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+                System.out.println(visibleCheckEastAndSouth(integerList.get(i).get(z), z, b));
 
+            }
+        }
 
     }
 
