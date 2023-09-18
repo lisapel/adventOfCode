@@ -1,15 +1,11 @@
 package year2022.day8.part1;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
-import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Part1 {
     public void solution() throws IOException {
@@ -27,34 +23,53 @@ public class Part1 {
         for (int i = 0; i < integerList.size(); i++) {
             for (int z = integerList.size() - 1; z >= 0; z--) {
                 int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                visibleCheckEast(integerList.get(i).get(z), z, b);
+                visibleCheckEastAndSouth(integerList.get(i).get(z), z, b);
             }
         }
 
         for (int i = 0; i < integerList.size(); i++) {
             for (int y = 0; y < integerList.size(); y++) {
                 int a = integerList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                visibleCheckWest(integerList.get(i).get(y), y, a);
+                visibleCheckWestAndNorth(integerList.get(i).get(y), y, a);
+            }
+        }
+        List<List<Integer>> transformedList = transportMatrix(integerList);
+        for (int i = 0; i < transformedList.size(); i++) {
+            for (int y = 0; y < transformedList.size(); y++) {
+                int a = transformedList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
+                System.out.println(visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a));
             }
         }
 
 
-        //all outer-rows are visible
-        // the highest trees on each column/row are visible
-        // build checkers for east, west
-        // build checkers for north, south
     }
 
-    public boolean visibleCheckWest(int x, int xPos, int max) {
+
+    public boolean visibleCheckWestAndNorth(int x, int xPos, int max) {
         if (xPos == 0) {
             return true;
         } else return x >= max;
     }
 
-    public boolean visibleCheckEast(int x, int xPos, int max) {
+    public boolean visibleCheckEastAndSouth(int x, int xPos, int max) {
         if (xPos == 99) {
             return true;
         } else return x >= max;
+    }
+
+    public List<List<Integer>> transportMatrix(List<List<Integer>> integerList) {
+        int numRows = integerList.get(0).size();
+        int numCols = integerList.size();
+        List<List<Integer>> transposed = new ArrayList<>(numRows);
+
+        for (int row = 0; row < numRows; row++) {
+            List<Integer> newRow = new ArrayList<>(numCols);
+            for (List<Integer> list : integerList) {
+                newRow.add(list.get(row));
+            }
+            transposed.add(newRow);
+        }
+        return transposed;
     }
 
 
@@ -62,4 +77,5 @@ public class Part1 {
         Part1 part1 = new Part1();
         part1.solution();
     }
+
 }
