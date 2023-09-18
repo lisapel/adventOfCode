@@ -21,34 +21,33 @@ public class Part1 {
         }
         List<List<Integer>> transformedList = transportMatrix(integerList);
 
-        for (int i = 0; i < integerList.size(); i++) { //east
+
+        eastSouthChecker(integerList); // east
+        eastSouthChecker(transformedList); //south
+        westNorthChecker(integerList); //west
+        westNorthChecker(transformedList); //north
+
+
+    }
+
+    public void eastSouthChecker(List<List<Integer>> integerList) {
+
+        for (int i = 0; i < integerList.size(); i++) {
             for (int z = integerList.size() - 1; z >= 0; z--) {
                 int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 visibleCheckEastAndSouth(integerList.get(i).get(z), z, b);
             }
         }
+    }
 
-        for (int i = 0; i < integerList.size(); i++) { //west
-            for (int y = 0; y < integerList.size(); y++) {
-                int a = integerList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                visibleCheckWestAndNorth(integerList.get(i).get(y), y, a);
-            }
-        }
-        for (int i = 0; i < transformedList.size(); i++) { //north
+    public void westNorthChecker(List<List<Integer>> transformedList) {
+        for (int i = 0; i < transformedList.size(); i++) {
             for (int y = 0; y < transformedList.size(); y++) {
                 int a = transformedList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
                 visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a);
             }
         }
-        for (int i=0;i<transformedList.size();i++){ //south
-            for (int z=transformedList.size()-1;z>=0;z--){
-                int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                System.out.println(visibleCheckEastAndSouth(integerList.get(i).get(z), z, b));
-
-            }
-        }
     }
-
 
     public boolean visibleCheckWestAndNorth(int x, int xPos, int max) {
         if (xPos == 0) {
