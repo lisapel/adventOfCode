@@ -64,9 +64,7 @@ public class Part1 {
             return true;
         } else {
             for (int i = col + 1; i <= 98; i++) {
-                if (integerList.get(row).get(i) >= integerList.get(row).get(col)) {
-                    return false;
-                }
+                if (integerList.get(row).get(i) >= integerList.get(row).get(col)) return false;
             }
         }
         return true;
