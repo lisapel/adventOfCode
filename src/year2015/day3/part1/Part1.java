@@ -16,7 +16,7 @@ public class Part1 {
 
         List<String> positions = new ArrayList<>();
         positions.add("0:0");
-        int houseCounter = 0;
+
         for (char c : characters) {
             switch (c) {
                 case '^' -> y++;
