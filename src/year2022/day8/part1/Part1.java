@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Part1 {
+    List<List<Integer>> integerList = new ArrayList<>();
+
     public void solution() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("src/year2022/day8/part1/part1"));
-        List<List<Integer>> integerList = new ArrayList<>();
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             List<Integer> integers = new ArrayList<>();
@@ -19,63 +20,76 @@ public class Part1 {
             }
             integerList.add(integers);
         }
-        List<List<Integer>> transformedList = transportMatrix(integerList);
+        int counter=0;
+        for (int col = 0; col<integerList.size();col++){ //column
+            for (int row=0; row<integerList.get(col).size();row++){ //row
+                if (isVisible(col,row)){
+                    counter++;
+                }
 
-
-        eastSouthChecker(integerList); // east
-        eastSouthChecker(transformedList); //south
-        westNorthChecker(integerList); //west
-        westNorthChecker(transformedList); //north
-
-
-    }
-
-    public void eastSouthChecker(List<List<Integer>> integerList) {
-
-        for (int i = 0; i < integerList.size(); i++) {
-            for (int z = integerList.size() - 1; z >= 0; z--) {
-                int b = integerList.get(i).stream().toList().subList(z, 99).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                visibleCheckEastAndSouth(integerList.get(i).get(z), z, b);
             }
-        }
-    }
 
-    public void westNorthChecker(List<List<Integer>> transformedList) {
-        for (int i = 0; i < transformedList.size(); i++) {
-            for (int y = 0; y < transformedList.size(); y++) {
-                int a = transformedList.get(i).stream().toList().subList(0, y).stream().collect(Collectors.summarizingInt(Integer::intValue)).getMax();
-                visibleCheckWestAndNorth(transformedList.get(i).get(y), y, a);
-            }
         }
-    }
+        System.out.println(counter);
 
-    public boolean visibleCheckWestAndNorth(int x, int xPos, int max) {
-        if (xPos == 0) {
+    }
+    public boolean isVisible(int col, int row){
+        if (visibleWest(col,row)){
             return true;
-        } else return x >= max;
-    }
-
-    public boolean visibleCheckEastAndSouth(int x, int xPos, int max) {
-        if (xPos == 99) {
+        }else if(visibleEast(col,row)){
             return true;
-        } else return x >= max;
-
+        }else if (visibleSouth(col,row)){
+            return true;
+        } else return visibleNorth(col, row);
     }
 
-    public List<List<Integer>> transportMatrix(List<List<Integer>> integerList) {
-        int numRows = integerList.get(0).size();
-        int numCols = integerList.size();
-        List<List<Integer>> transposed = new ArrayList<>(numRows);
-
-        for (int row = 0; row < numRows; row++) {
-            List<Integer> newRow = new ArrayList<>(numCols);
-            for (List<Integer> list : integerList) {
-                newRow.add(list.get(row));
-            }
-            transposed.add(newRow);
+    public boolean visibleWest(int col, int row){
+        if (col==0){
+            return true;
         }
-        return transposed;
+        for (int i= col -1; i>=0;i--){
+            if (integerList.get(row).get(i)>=integerList.get(row).get(col)){
+                return false;
+            }
+        }
+        return true;
     }
+
+    public boolean visibleEast(int col, int row){
+        if (col==98){
+            return true;
+        }
+        for (int i=col+1;i<=98;i++){
+            if (integerList.get(row).get(i)>=integerList.get(row).get(col)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean visibleNorth(int col, int row){
+        if (row==0){
+            return true;
+        }
+        for (int i=row-1;i>=0;i--){
+            if (integerList.get(col).get(i)>=integerList.get(col).get(row)){
+                return false;
+            }
+        }
+        return true;
+    }
+    public boolean visibleSouth(int col, int row){
+        if (row==98){
+            return true;
+        }
+        for (int i=row+1;i<=98;i++){
+            if(integerList.get(col).get(i)<=integerList.get(col).get(row)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 
     public static void main(String[] args) throws IOException {
         Part1 part1 = new Part1();
